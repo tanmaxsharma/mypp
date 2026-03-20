@@ -147,7 +147,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop — full pill button */}
-          <a href="/cv.pdf" download className="cv-btn">
+          <a href="/Tanmay_Sharma_CV_2026.pdf" download className="cv-btn">
             <span className="cv-btn-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M12 5v10M7 15l5 5 5-5"/>
@@ -158,7 +158,7 @@ export default function Navbar() {
           </a>
 
           {/* Mobile — icon + "CV" label */}
-          <a href="/cv.pdf" download className="cv-btn-mobile" title="Download CV">
+          <a href="/Tanmay_Sharma_CV_2026.pdf" download className="cv-btn-mobile" title="Download CV">
             <span className="cv-btn-mobile-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M12 5v10M7 15l5 5 5-5"/>

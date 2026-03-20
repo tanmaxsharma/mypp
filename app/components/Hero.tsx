@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useRef } from "react";
 
 export default function Hero() {
-  const btnRef = useRef<HTMLButtonElement>(null);
+  // Updated to HTMLAnchorElement since hire-btn is now an <a> tag
+  const btnRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const btn = btnRef.current;
@@ -54,7 +55,7 @@ export default function Hero() {
           overflow: hidden;
         }
 
-        /* subtle dot grid */
+        /* dot grid */
         .hero::before {
           content: '';
           position: absolute;
@@ -81,7 +82,6 @@ export default function Hero() {
           animation: fadeUp 0.5s 0.05s ease forwards;
         }
         .hero-topbar .tl { width: 36px; height: 1px; background: #ccc; flex-shrink: 0; }
-
         .hero-avail {
           margin-left: auto;
           display: flex; align-items: center; gap: 6px;
@@ -100,7 +100,7 @@ export default function Hero() {
           50%      { opacity:0.4; transform:scale(1.5); }
         }
 
-        /* ─── MAIN LAYOUT: 3-col ─── */
+        /* ─── GRID: 3 columns ─── */
         .hero-grid {
           display: grid;
           grid-template-columns: 1fr 140px 340px;
@@ -109,16 +109,15 @@ export default function Hero() {
           flex: 1;
         }
 
-        /* ─── LEFT CONTENT ─── */
+        /* ─── LEFT ─── */
         .hero-left { display: flex; flex-direction: column; }
 
         .hero-role {
-          font-size: 11px; font-weight: 700;
+          font-size: 20px; font-weight: 700;
           letter-spacing: 0.2em; text-transform: uppercase;
-          color: var(--orange); margin-bottom: 12px;
+          color: var(--orange); margin-bottom: 12px; margin-left: 2px;
           opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards;
         }
-
         .hero-title {
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(66px, 8.5vw, 108px);
@@ -162,7 +161,7 @@ export default function Hero() {
         }
         .hero-sdivider { width: 1px; height: 32px; background: #e8e8e8; flex-shrink: 0; }
 
-        /* Contact */
+        /* Contact strip */
         .hero-contact {
           display: flex; flex-wrap: wrap; gap: 10px 20px;
           opacity: 0; animation: fadeUp 0.5s 0.58s ease forwards;
@@ -178,7 +177,7 @@ export default function Hero() {
           stroke: var(--orange); fill: none; stroke-width: 2; flex-shrink: 0;
         }
 
-        /* ─── MIDDLE COLUMN: Buttons ─── */
+        /* ─── MIDDLE: Buttons ─── */
         .hero-btns {
           display: flex; flex-direction: column;
           align-items: center; gap: 20px;
@@ -191,9 +190,13 @@ export default function Hero() {
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
         }
+
+        /* ── Hire Me is now an <a> tag ── */
         .hire-btn {
           width: 88px; height: 88px;
-          border-radius: 50%; background: var(--orange); color: #fff;
+          border-radius: 50%;
+          background: var(--orange);
+          color: #fff;
           font-family: 'Manrope', sans-serif;
           font-size: 11.5px; font-weight: 800;
           letter-spacing: 0.05em; text-transform: uppercase;
@@ -203,6 +206,10 @@ export default function Hero() {
           transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
           position: relative; z-index: 2;
           animation: floatBtn 3.5s ease-in-out infinite;
+          text-decoration: none; /* important for <a> */
+        }
+        .hire-btn:hover {
+          box-shadow: 0 12px 32px rgba(244,93,34,0.48);
         }
         .hire-ring1 {
           position: absolute; inset: -9px; border-radius: 50%;
@@ -238,7 +245,7 @@ export default function Hero() {
         }
         .view-btn:hover svg { transform: translate(2px,-2px); }
 
-        /* ─── RIGHT COLUMN: Image ─── */
+        /* ─── RIGHT: Image ─── */
         .hero-right {
           display: flex; flex-direction: column; gap: 12px;
           opacity: 0; animation: fadeScale 0.8s 0.3s ease forwards;
@@ -249,7 +256,6 @@ export default function Hero() {
         }
 
         .hero-img-frame { position: relative; width: 100%; }
-
         .hero-img-wrap {
           position: relative; width: 100%;
           aspect-ratio: 3/4; border-radius: 10px;
@@ -266,12 +272,11 @@ export default function Hero() {
         .pencil-border {
           position: absolute; inset: -5px;
           width: calc(100% + 10px); height: calc(100% + 10px);
-          pointer-events: none; z-index: 4;
-          overflow: visible; border-radius: 12px;
+          pointer-events: none; z-index: 4; overflow: visible;
         }
         .pencil-rect {
           fill: none; stroke: #aaa; stroke-width: 1;
-          stroke-dasharray: 5 5; stroke-linecap: round; opacity: 0.6;
+          stroke-dasharray: 5 5; stroke-linecap: round; opacity: 0.55;
         }
 
         /* Skills */
@@ -301,12 +306,10 @@ export default function Hero() {
         }
 
         /* ════ RESPONSIVE ════ */
-
         @media (max-width: 1280px) {
           .hero { padding: 40px 52px 56px; }
           .hero-grid { grid-template-columns: 1fr 130px 310px; gap: 0 22px; }
         }
-
         @media (max-width: 1060px) {
           .hero { padding: 36px 40px 52px; }
           .hero-grid { grid-template-columns: 1fr 120px 280px; gap: 0 18px; }
@@ -319,8 +322,7 @@ export default function Hero() {
           .hero-grid {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
-            gap: 28px 24px;
-            align-items: start;
+            gap: 28px 24px; align-items: start;
           }
           .hero-left  { grid-column: 1; grid-row: 1; }
           .hero-right { grid-column: 2; grid-row: 1 / 3; }
@@ -331,76 +333,39 @@ export default function Hero() {
           }
           .hero-tagline { grid-column: 1 / -1; }
           .hero-avail { display: none; }
-          .hero-desc { max-width: 100%; }
+          .hero-desc  { max-width: 100%; }
         }
 
-        /* ── MOBILE ── */
+        /* Mobile */
         @media (max-width: 600px) {
           .hero { padding: 20px 20px 44px; }
-
-          /* Topbar hides from its default position */
-          .hero-topbar {
-            display: none; /* hidden from top — re-shown inside grid via .mobile-topbar */
+          .hero-topbar { display: none; }
+          .hero-grid { grid-template-columns: 1fr; gap: 0; display: flex; flex-direction: column; }
+          .hero-right { order: -1; align-items: center; margin-bottom: 28px; }
+          .hero-img-wrap { max-width: 240px; margin: 0 auto; aspect-ratio: 3/3.5; }
+          .hero-skills  { justify-content: center; }
+          .hero-left    { order: 0; margin-bottom: 20px; }
+          .hero-title   { font-size: clamp(58px, 16vw, 78px); }
+          .hero-desc    { max-width: 100%; font-size: 13px; }
+          .hero-stats   { gap: 16px; }
+          .hero-stat-num{ font-size: 24px; }
+          .hero-btns    {
+            order: 1; flex-direction: row; align-items: center;
+            justify-content: flex-start; gap: 20px; margin-bottom: 28px;
           }
+          .hero-tagline { order: 2; }
 
-          .hero-grid {
-            grid-template-columns: 1fr;
-            gap: 0;
-            display: flex;
-            flex-direction: column;
-          }
-
-          /* Mobile topbar shown above image */
+          /* Mobile topbar above image */
           .mobile-topbar {
             display: flex !important;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #666;
-            font-weight: 500;
-            letter-spacing: 0.02em;
+            align-items: center; justify-content: center;
+            gap: 8px; font-size: 13px; color: #666;
+            font-weight: 500; letter-spacing: 0.02em;
             margin-bottom: 14px;
-            opacity: 0;
-            animation: fadeUp 0.5s 0.05s ease forwards;
+            opacity: 0; animation: fadeUp 0.5s 0.05s ease forwards;
           }
           .mobile-topbar .tl { width: 28px; height: 1px; background: #ccc; flex-shrink: 0; }
-          .mobile-topbar .hero-avail {
-            margin-left: 0;
-            font-size: 10.5px;
-          }
-
-          /* Image block first */
-          .hero-right {
-            order: 1;
-            align-items: center;
-            margin-bottom: 24px;
-          }
-          .hero-img-wrap { max-width: 240px; margin: 0 auto; aspect-ratio: 3/3.5; }
-          .hero-skills { justify-content: center; }
-
-          /* Content */
-          .hero-left {
-            order: 2;
-            margin-bottom: 20px;
-          }
-          .hero-title { font-size: clamp(58px, 16vw, 78px); }
-          .hero-desc { max-width: 100%; font-size: 13px; }
-          .hero-stats { gap: 16px; }
-          .hero-stat-num { font-size: 24px; }
-
-          /* Buttons */
-          .hero-btns {
-            order: 3;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 20px;
-            margin-bottom: 28px;
-          }
-
-          /* Tagline */
-          .hero-tagline { order: 4; }
+          .mobile-topbar .hero-avail { margin-left: 0; font-size: 10.5px; display: flex !important; }
         }
 
         @media (max-width: 400px) {
@@ -413,7 +378,7 @@ export default function Hero() {
 
       <section className="hero">
 
-        {/* Topbar — desktop only (hidden on mobile via CSS) */}
+        {/* Desktop topbar */}
         <div className="hero-topbar">
           <span>Hey 👋</span>
           <span className="tl" />
@@ -423,14 +388,15 @@ export default function Hero() {
             Available for work
           </span>
         </div>
+        
 
-        {/* Grid */}
         <div className="hero-grid">
 
           {/* ── COL 1: Content ── */}
           <div className="hero-left">
-            <p className="hero-role">Full-Stack Web Developer</p>
-            <h1 className="hero-title">WEB<br />DEVEL<span>O</span>PER</h1>
+            <p className="hero-role">Full-Stack</p>
+            <h1 className="hero-title">WEB DEVEL<span>O</span>PER</h1>
+
             <span className="hero-location">
               <svg viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
@@ -438,11 +404,13 @@ export default function Hero() {
               </svg>
               MP, Jabalpur — India
             </span>
+
             <p className="hero-desc">
               A seasoned UI/UX designer &amp; developer dedicated to bridging creativity
               with user-centric design principles. I craft intuitive digital experiences —
               turning ideas into fast, polished, and accessible web products.
             </p>
+
             <div className="hero-stats">
               <div className="hero-stat">
                 <span className="hero-stat-num">3<span>+</span></span>
@@ -459,20 +427,21 @@ export default function Hero() {
                 <span className="hero-stat-label">Happy Clients</span>
               </div>
             </div>
+
             <div className="hero-contact">
               <a href="mailto:hi@tanmaysharma.in" className="hero-ci">
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                 hi@tanmaysharma.in
               </a>
-              <a href="tel:+910000000000" className="hero-ci">
+              <a href="tel:+91940652529" className="hero-ci">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72 12.07 12.07 0 00.57 2.57 2 2 0 01-.45 2.11L9.09 10.5a16 16 0 006.41 6.41l1.1-1.1a2 2 0 012.11-.45 12.07 12.07 0 002.57.57A2 2 0 0122 16.92z"/></svg>
-                +91-00000-00000
+                +91-9406525259
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hero-ci">
+              <a href="https://www.linkedin.com/in/tanmaxsharma/" target="_blank" rel="noreferrer" className="hero-ci">
                 <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
                 LinkedIn
               </a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="hero-ci">
+              <a href="https://github.com/tanmaxsharma" target="_blank" rel="noreferrer" className="hero-ci">
                 <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                 GitHub
               </a>
@@ -484,8 +453,12 @@ export default function Hero() {
             <div className="hire-zone">
               <div className="hire-ring2" />
               <div className="hire-ring1" />
-              <button ref={btnRef} className="hire-btn">Hire Me</button>
+              {/* ✅ Now an <a> tag — scrolls smoothly to #contact */}
+              <a href="#contact" ref={btnRef} className="hire-btn">
+                Hire Me
+              </a>
             </div>
+
             <a href="#projects" className="view-btn">
               View My Work
               <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -495,7 +468,7 @@ export default function Hero() {
           {/* ── COL 3: Image ── */}
           <div className="hero-right">
 
-            {/* Mobile topbar — shown only on mobile, above image */}
+            {/* Mobile topbar above image — hidden on desktop */}
             <div className="mobile-topbar" style={{ display: "none" }}>
               <span>Hey 👋</span>
               <span className="tl" />
@@ -525,10 +498,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Tagline */}
-          <p className="hero-tagline">
-            Passionate about transforming ideas into visually compelling interfaces and shaping the future of digital innovation.
-          </p>
+ 
 
         </div>
       </section>

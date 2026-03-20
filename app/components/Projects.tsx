@@ -4,12 +4,54 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 const projects = [
-  { id: 1, title: "Pet Pals",        desc: "A modern news aggregator blending local stories with live weather data and breaking headlines in one clean dashboard.", image: "/images/project1.jpg", link: "#", tag: "Web App"        },
-  { id: 2, title: "Crafted Visions", desc: "Passion meets design — an audio-visual generative art tool that transforms sound frequencies into stunning waveform graphics.", image: "/images/project2.jpg", link: "#", tag: "Creative"       },
-  { id: 3, title: "Pixel Forge",     desc: "A 3D object design playground built for rapid prototyping with soft-body physics and real-time rendering.",               image: "/images/project3.jpg", link: "#", tag: "3D / UI"        },
-  { id: 4, title: "Design Pulse",    desc: "A curated component library that hides complexity behind clean APIs, keeping the design process fluid and intuitive.",    image: "/images/project4.jpg", link: "#", tag: "Design System"  },
-  { id: 5, title: "Neon Grid",       desc: "Real-time collaborative whiteboard with infinite canvas, sticky notes, and live cursor presence for distributed teams.",  image: "/images/project5.jpg", link: "#", tag: "SaaS"           },
-  { id: 6, title: "Orbit CMS",       desc: "A headless CMS with a visual editor, dynamic routing, and instant previews — built for developers who love simplicity.", image: "/images/project6.jpg", link: "#", tag: "Full Stack"     },
+  {
+    id: 1,
+    title: "The Lok Mangal News",
+    desc: "A modern news aggregator blending local stories with live weather data and breaking headlines in one clean dashboard.",
+    image: "/images/projects/lokmangal.png",
+    link: "https://www.thelokmangal.com/",
+    tag: "Web App",
+  },
+  {
+    id: 2,
+    title: "Daksh Foundation",
+    desc: "Passion meets design — an audio-visual generative art tool that transforms sound frequencies into stunning waveform graphics.",
+    image: "/images/projects/daksh.png",
+    link: "https://www.dakshfoundation.org/",
+    tag: "Creative",
+  },
+  {
+    id: 3,
+    title: "HCET - Hitkarini College of Engineering and Technology",
+    desc: "A 3D object design playground built for rapid prototyping with soft-body physics and real-time rendering.",
+    image: "/images/projects/hcet.png",
+    link: "http://www.hcet.hitkarini.com/",
+    tag: "3D / UI",
+  },
+  {
+    id: 4,
+    title: "Remi Creative",
+    desc: "A curated component library that hides complexity behind clean APIs, keeping the design process fluid and intuitive.",
+    image: "/images/projects/lokmangal.png",
+    link: "https://remicreative.ca/",
+    tag: "Design System",
+  },
+  {
+    id: 5,
+    title: "Serendipity Cafe",
+    desc: "Real-time collaborative whiteboard with infinite canvas, sticky notes, and live cursor presence for distributed teams.",
+    image: "/images/projects/lokmangal.png",
+    link: "https://serendipitycafe.in/",
+    tag: "SaaS",
+  },
+  {
+    id: 6,
+    title: "Anami Decors",
+    desc: "A headless CMS with a visual editor, dynamic routing, and instant previews — built for developers who love simplicity.",
+    image: "/images/projects/lokmangal.png",
+    link: "https://www.anamidecors.com/",
+    tag: "Full Stack",
+  },
 ];
 
 const gradients = [
@@ -23,7 +65,7 @@ const gradients = [
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef   = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     // Only run on mobile
@@ -32,7 +74,7 @@ export default function Projects() {
     let ctx: any;
 
     const initGSAP = async () => {
-      const { gsap }          = await import("gsap");
+      const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
@@ -246,16 +288,22 @@ export default function Projects() {
             <div
               key={project.id}
               className="project-card"
-              ref={el => { cardsRef.current[i] = el; }}
+              ref={(el) => {
+                cardsRef.current[i] = el;
+              }}
             >
               <div className="project-thumb">
                 <div
                   className="project-thumb-placeholder"
                   style={{ background: gradients[i] }}
                 />
-                {/* Swap with real Image when ready:
-                <Image src={project.image} alt={project.title} fill style={{ objectFit:"cover" }} />
-                */}
+                Swap with real Image when ready:
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
                 <span className="project-tag">{project.tag}</span>
               </div>
 
@@ -267,7 +315,7 @@ export default function Projects() {
                 <a href={project.link} className="view-btn">
                   View Project
                   <svg viewBox="0 0 24 24">
-                    <path d="M7 17L17 7M7 7h10v10"/>
+                    <path d="M7 17L17 7M7 7h10v10" />
                   </svg>
                 </a>
               </div>
