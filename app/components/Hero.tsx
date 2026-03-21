@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef } from "react";
 
 export default function Hero() {
-  // Updated to HTMLAnchorElement since hire-btn is now an <a> tag
   const btnRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,7 +42,6 @@ export default function Hero() {
           --light:  #f7f7f7;
         }
 
-        /* ─── SECTION ─── */
         .hero {
           font-family: 'Manrope', sans-serif;
           background: #fff;
@@ -55,7 +53,6 @@ export default function Hero() {
           overflow: hidden;
         }
 
-        /* dot grid */
         .hero::before {
           content: '';
           position: absolute;
@@ -68,7 +65,6 @@ export default function Hero() {
         }
         .hero > * { position: relative; z-index: 1; }
 
-        /* ─── TOPBAR ─── */
         .hero-topbar {
           display: flex;
           align-items: center;
@@ -100,7 +96,6 @@ export default function Hero() {
           50%      { opacity:0.4; transform:scale(1.5); }
         }
 
-        /* ─── GRID: 3 columns ─── */
         .hero-grid {
           display: grid;
           grid-template-columns: 1fr 140px 340px;
@@ -109,7 +104,6 @@ export default function Hero() {
           flex: 1;
         }
 
-        /* ─── LEFT ─── */
         .hero-left { display: flex; flex-direction: column; }
 
         .hero-role {
@@ -144,7 +138,6 @@ export default function Hero() {
           opacity: 0; animation: fadeUp 0.5s 0.36s ease forwards;
         }
 
-        /* Stats */
         .hero-stats {
           display: flex; align-items: center; gap: 22px; margin-bottom: 32px;
           opacity: 0; animation: fadeUp 0.5s 0.42s ease forwards;
@@ -161,7 +154,6 @@ export default function Hero() {
         }
         .hero-sdivider { width: 1px; height: 32px; background: #e8e8e8; flex-shrink: 0; }
 
-        /* Contact strip */
         .hero-contact {
           display: flex; flex-wrap: wrap; gap: 10px 20px;
           opacity: 0; animation: fadeUp 0.5s 0.58s ease forwards;
@@ -177,7 +169,6 @@ export default function Hero() {
           stroke: var(--orange); fill: none; stroke-width: 2; flex-shrink: 0;
         }
 
-        /* ─── MIDDLE: Buttons ─── */
         .hero-btns {
           display: flex; flex-direction: column;
           align-items: center; gap: 20px;
@@ -191,7 +182,6 @@ export default function Hero() {
           flex-shrink: 0;
         }
 
-        /* ── Hire Me is now an <a> tag ── */
         .hire-btn {
           width: 88px; height: 88px;
           border-radius: 50%;
@@ -206,7 +196,7 @@ export default function Hero() {
           transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
           position: relative; z-index: 2;
           animation: floatBtn 3.5s ease-in-out infinite;
-          text-decoration: none; /* important for <a> */
+          text-decoration: none;
         }
         .hire-btn:hover {
           box-shadow: 0 12px 32px rgba(244,93,34,0.48);
@@ -245,7 +235,6 @@ export default function Hero() {
         }
         .view-btn:hover svg { transform: translate(2px,-2px); }
 
-        /* ─── RIGHT: Image ─── */
         .hero-right {
           display: flex; flex-direction: column; gap: 12px;
           opacity: 0; animation: fadeScale 0.8s 0.3s ease forwards;
@@ -268,7 +257,6 @@ export default function Hero() {
         }
         .hero-img-wrap:hover img { transform: scale(1.03); }
 
-        /* Dashed pencil border */
         .pencil-border {
           position: absolute; inset: -5px;
           width: calc(100% + 10px); height: calc(100% + 10px);
@@ -279,7 +267,6 @@ export default function Hero() {
           stroke-dasharray: 5 5; stroke-linecap: round; opacity: 0.55;
         }
 
-        /* Skills */
         .hero-skills { display: flex; flex-wrap: wrap; gap: 6px; }
         .s-chip {
           font-size: 9.5px; font-weight: 700;
@@ -291,7 +278,6 @@ export default function Hero() {
         }
         .s-chip:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
 
-        /* Tagline */
         .hero-tagline {
           grid-column: 1 / -1;
           padding-top: 28px; border-top: 1px solid #f0f0f0;
@@ -305,7 +291,6 @@ export default function Hero() {
           to   { opacity:1; transform: translateY(0); }
         }
 
-        /* ════ RESPONSIVE ════ */
         @media (max-width: 1280px) {
           .hero { padding: 40px 52px 56px; }
           .hero-grid { grid-template-columns: 1fr 130px 310px; gap: 0 22px; }
@@ -316,7 +301,6 @@ export default function Hero() {
           .hero-title { font-size: clamp(58px, 8vw, 90px); }
         }
 
-        /* Tablet */
         @media (max-width: 860px) {
           .hero { padding: 32px 32px 48px; }
           .hero-grid {
@@ -336,7 +320,6 @@ export default function Hero() {
           .hero-desc  { max-width: 100%; }
         }
 
-        /* Mobile */
         @media (max-width: 600px) {
           .hero { padding: 20px 20px 44px; }
           .hero-topbar { display: none; }
@@ -355,7 +338,6 @@ export default function Hero() {
           }
           .hero-tagline { order: 2; }
 
-          /* Mobile topbar above image */
           .mobile-topbar {
             display: flex !important;
             align-items: center; justify-content: center;
@@ -388,7 +370,6 @@ export default function Hero() {
             Available for work
           </span>
         </div>
-        
 
         <div className="hero-grid">
 
@@ -405,12 +386,14 @@ export default function Hero() {
               MP, Jabalpur — India
             </span>
 
+            {/* ✅ UPDATED: CV-accurate description */}
             <p className="hero-desc">
-              A seasoned UI/UX designer &amp; developer dedicated to bridging creativity
-              with user-centric design principles. I craft intuitive digital experiences —
-              turning ideas into fast, polished, and accessible web products.
+              Full Stack Developer with 3+ years of experience building production-grade web apps
+              using React, Next.js &amp; Node.js. I specialise in scalable APIs, AI-integrated tools,
+              and end-to-end automation workflows delivering fast, polished products on time.
             </p>
 
+            {/* ✅ UPDATED: stats reflect CV */}
             <div className="hero-stats">
               <div className="hero-stat">
                 <span className="hero-stat-num">3<span>+</span></span>
@@ -418,22 +401,22 @@ export default function Hero() {
               </div>
               <div className="hero-sdivider" />
               <div className="hero-stat">
-                <span className="hero-stat-num">20<span>+</span></span>
-                <span className="hero-stat-label">Projects Done</span>
+                <span className="hero-stat-num">5<span>+</span></span>
+                <span className="hero-stat-label">Client Apps</span>
               </div>
               <div className="hero-sdivider" />
               <div className="hero-stat">
-                <span className="hero-stat-num">15<span>+</span></span>
-                <span className="hero-stat-label">Happy Clients</span>
+                <span className="hero-stat-num">75<span>%</span></span>
+                <span className="hero-stat-label">Productivity</span>
               </div>
             </div>
 
             <div className="hero-contact">
-              <a href="mailto:hi@tanmaysharma.in" className="hero-ci">
+              <a href="mailto:tanmaysharma.eng05@gmail.com" className="hero-ci">
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-                hi@tanmaysharma.in
+                tanmaysharma.eng05@gmail.com
               </a>
-              <a href="tel:+91940652529" className="hero-ci">
+              <a href="tel:+919406525259" className="hero-ci">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72 12.07 12.07 0 00.57 2.57 2 2 0 01-.45 2.11L9.09 10.5a16 16 0 006.41 6.41l1.1-1.1a2 2 0 012.11-.45 12.07 12.07 0 002.57.57A2 2 0 0122 16.92z"/></svg>
                 +91-9406525259
               </a>
@@ -453,7 +436,6 @@ export default function Hero() {
             <div className="hire-zone">
               <div className="hire-ring2" />
               <div className="hire-ring1" />
-              {/* ✅ Now an <a> tag — scrolls smoothly to #contact */}
               <a href="#contact" ref={btnRef} className="hire-btn">
                 Hire Me
               </a>
@@ -468,7 +450,6 @@ export default function Hero() {
           {/* ── COL 3: Image ── */}
           <div className="hero-right">
 
-            {/* Mobile topbar above image — hidden on desktop */}
             <div className="mobile-topbar" style={{ display: "none" }}>
               <span>Hey 👋</span>
               <span className="tl" />
@@ -483,7 +464,7 @@ export default function Hero() {
               <div className="hero-img-wrap">
                 <Image
                   src="/images/hero.png"
-                  alt="Tanmay Sharma — Web Developer"
+                  alt="Tanmay Sharma — Full Stack Developer"
                   width={340}
                   height={453}
                   priority
@@ -491,14 +472,13 @@ export default function Hero() {
               </div>
             </div>
 
+            {/* ✅ UPDATED: chips from CV tech skills */}
             <div className="hero-skills">
-              {["React","Next.js","TypeScript","Node.js","UI/UX","Tailwind","Python"].map(s => (
+              {["Javascript","React", "Next.js", "Node.js","Tailwind", "MongoDB", "AWS", "AI Enthusiast"].map(s => (
                 <span key={s} className="s-chip">{s}</span>
               ))}
             </div>
           </div>
-
- 
 
         </div>
       </section>

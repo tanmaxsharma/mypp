@@ -1,8 +1,9 @@
 export default function Skills() {
+  // ✅ UPDATED: All 4 skills match CV — Frontend, Backend, WordPress, AI/Automation
   const skills = [
     {
       title: "Front-End Development",
-      desc: "Building fast, responsive, and visually polished UIs using React, Next.js, Tailwind CSS, and modern web standards. Every pixel crafted for performance and accessibility.",
+      desc: "Building fast, responsive, and visually polished UIs using React, Next.js, Tailwind CSS, and TypeScript. Delivered 5+ production client apps with a focus on performance, accessibility, and pixel-perfect design.",
       icon: (
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
@@ -11,7 +12,7 @@ export default function Skills() {
     },
     {
       title: "Back-End Development",
-      desc: "Designing robust server-side systems with Node.js, Express, and REST APIs. From database architecture with MongoDB to authentication and deployment.",
+      desc: "Designing robust server-side systems with Node.js, Express, and REST APIs. Built CRM platforms, billing systems, and payment integrations using Razorpay and WhatsApp Business API reducing manual processes by 40%.",
       icon: (
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0018 0V5"/><path d="M3 12a9 3 0 0018 0"/>
@@ -19,20 +20,24 @@ export default function Skills() {
       ),
     },
     {
-      title: "WordPress Development",
-      desc: "Creating custom WordPress themes and plugins tailored to client needs. From simple blogs to complex business sites — clean code, fast load times, easy CMS.",
+      title: "AI & Automation",
+      desc: "Building intelligent workflows with n8n and Claude AI from zero-touch lead pipelines that classify intent via WhatsApp, to AI-assisted development that accelerates feature delivery. Turning manual work into automated systems.",
       icon: (
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+          <path d="M12 2a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2V4a2 2 0 012-2z"/>
+          <path d="M12 16a2 2 0 012 2v2a2 2 0 01-2 2 2 2 0 01-2-2v-2a2 2 0 012-2z"/>
+          <path d="M4 10a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2H6a2 2 0 01-2-2z"/>
+          <path d="M14 10a2 2 0 012-2h2a2 2 0 012 2 2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          <path d="M6.34 7.76l1.42-1.42M16.24 17.66l1.42-1.42M6.34 16.24l1.42 1.42M16.24 6.34l1.42 1.42"/>
         </svg>
       ),
     },
     {
-      title: "Shopify Development",
-      desc: "Building high-converting Shopify storefronts with custom Liquid themes, app integrations, and optimised checkout flows for seamless shopping experiences.",
+      title: "CMS & Platform Development",
+      desc: "From static landing pages to dynamic WordPress sites and Shopify storefronts. custom-built with clean code, smooth animations, and fast load times. Easy for clients to manage, built to convert.",
       icon: (
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/>
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
         </svg>
       ),
     },
@@ -83,7 +88,6 @@ export default function Skills() {
           max-width: 220px;
         }
 
-        /* 2×2 grid */
         .skills-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -149,8 +153,9 @@ export default function Skills() {
           <div className="skills-left">
             <p className="skills-eyebrow">What I do</p>
             <h2 className="skills-title">Skills</h2>
+            {/* ✅ UPDATED: desc matches CV focus */}
             <p className="skills-desc">
-              My expertise across design and development — from pixel-perfect interfaces to scalable server-side systems.
+              My core expertise across full-stack development, AI automation, and platform-based solutions — built over 3+ years of production work.
             </p>
           </div>
 

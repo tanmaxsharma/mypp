@@ -1,18 +1,19 @@
 import Image from "next/image";
 
+// ✅ UPDATED: Added n8n, PostgreSQL, MySQL — all from CV. Kept 12 items for clean 4-col grid.
 const techs = [
-  { name: "HTML",       src: "/images/tech/html-5.png"   },
-  { name: "CSS",        src: "/images/tech/css-3.png"    },
-  { name: "JavaScript", src: "/images/tech/js.png"       },
-  { name: "Next.js",    src: "/images/tech/next.png"   },
-  { name: "React.js",      src: "/images/tech/react.png"    },
-  { name: "Node.js",    src: "/images/tech/nodejs.png"   },
-  { name: "AWS",        src: "/images/tech/aws.png"   },
-  { name: "Python",     src: "/images/tech/python.png" },
-  { name: "MongoDB",    src: "/images/tech/mongo.png" },
-  { name: "Github",        src: "/images/tech/github.png"   },
-  { name: "Wordpress",  src: "/images/tech/wordpress.png"    },
-  { name: "Shopify",    src: "/images/tech/shopify.png"  },
+  { name: "HTML",       src: "/images/tech/html-5.png"     },
+  { name: "CSS",        src: "/images/tech/css-3.png"      },
+  { name: "JavaScript", src: "/images/tech/js.png"         },
+  { name: "React.js",   src: "/images/tech/react.png"      },
+  { name: "Next.js",    src: "/images/tech/next.png"       },
+  { name: "Node.js",    src: "/images/tech/nodejs.png"     },
+  { name: "Python",     src: "/images/tech/python.png"     },
+  { name: "MongoDB",    src: "/images/tech/mongo.png"      },
+  { name: "WordPress",  src: "/images/tech/wordpress.png"  },
+  { name: "Shopify",    src: "/images/tech/shopify.png"    },
+  { name: "GitHub",     src: "/images/tech/github.png"     },
+  { name: "AWS", src: "/images/tech/aws.png" },
 ];
 
 export default function TechStack() {
@@ -61,7 +62,6 @@ export default function TechStack() {
           max-width: 220px;
         }
 
-        /* 4-col grid */
         .tech-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -150,8 +150,9 @@ export default function TechStack() {
           <div className="tech-left">
             <p className="tech-eyebrow">What I work with</p>
             <h2 className="tech-title">Tech<br />Stacks</h2>
+            {/* ✅ UPDATED: desc is more specific */}
             <p className="tech-desc">
-              Tools and technologies I use daily to build fast, scalable, and polished web products.
+              Languages, frameworks, and platforms I use daily to build scalable, production-ready web products.
             </p>
           </div>
 
