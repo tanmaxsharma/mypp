@@ -1,6 +1,14 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tanmay Sharma",
+  icons: {
+    icon: "/ts.png",
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
