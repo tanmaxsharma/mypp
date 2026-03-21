@@ -393,21 +393,20 @@ export default function Hero() {
               and end-to-end automation workflows delivering fast, polished products on time.
             </p>
 
-            {/* ✅ UPDATED: stats reflect CV */}
             <div className="hero-stats">
               <div className="hero-stat">
                 <span className="hero-stat-num">3<span>+</span></span>
-                <span className="hero-stat-label">Years Exp.</span>
+                <span className="hero-stat-label">Years Experience</span>
               </div>
               <div className="hero-sdivider" />
               <div className="hero-stat">
-                <span className="hero-stat-num">5<span>+</span></span>
-                <span className="hero-stat-label">Client Apps</span>
+                <span className="hero-stat-num">25<span>+</span></span>
+                <span className="hero-stat-label">Projects Delivered</span>
               </div>
               <div className="hero-sdivider" />
               <div className="hero-stat">
-                <span className="hero-stat-num">75<span>%</span></span>
-                <span className="hero-stat-label">Productivity</span>
+                <span className="hero-stat-num">10<span>+</span></span>
+                <span className="hero-stat-label">Products Live</span>
               </div>
             </div>
 

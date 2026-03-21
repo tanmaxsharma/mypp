@@ -6,7 +6,7 @@ const techs = [
   { name: "CSS",        src: "/images/tech/css-3.png"      },
   { name: "JavaScript", src: "/images/tech/js.png"         },
   { name: "React.js",   src: "/images/tech/react.png"      },
-  { name: "Next.js",    src: "/images/tech/next.png"       },
+  { name: "Next.js",    src: "/images/tech/Next.png"       },
   { name: "Node.js",    src: "/images/tech/nodejs.png"     },
   { name: "Python",     src: "/images/tech/python.png"     },
   { name: "MongoDB",    src: "/images/tech/mongo.png"      },
