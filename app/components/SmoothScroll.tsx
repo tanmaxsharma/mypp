@@ -1,9 +1,7 @@
 "use client";
-
-import { ReactNode } from "react";
 import useLenis from "../hooks/useLenis";
 
-export default function SmoothScroll({ children }: { children: ReactNode }) {
+export default function SmoothScroll() {
   useLenis();
-  return <>{children}</>;
+  return null;
 }
