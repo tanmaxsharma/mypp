@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TawkTo from "./components/TawkTo";
 import type { Metadata } from "next";
 import SmoothScroll from "./components/SmoothScroll";
 
@@ -81,15 +82,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     // ✅ FIXED: suppressHydrationWarning added — prevents hydration mismatch
     <html lang="en" suppressHydrationWarning>
       <body className="bg-[#f5f5f5] text-black">
         <SmoothScroll />
-        <Navbar /> 
+        <Navbar />
         {children}
         <Footer />
+        <TawkTo />
       </body>
     </html>
   );

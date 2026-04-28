@@ -10,7 +10,7 @@ export default function Home() {
     "@type": "Person",
     name: "Tanmay Sharma",
     url: "https://tanmaxsharma.in",
-    image: "https://tanmaxsharma.in/images/hero.png",
+    image: "https://tanmaxsharma.in/images/tanmay.webp",
     jobTitle: "Full Stack Web Developer",
     description:
       "Full Stack Web Developer based in Jabalpur, Madhya Pradesh, India. Specialising in React, Next.js, Node.js, and AI automation workflows.",

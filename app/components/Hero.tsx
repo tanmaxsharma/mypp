@@ -388,14 +388,14 @@ export default function Hero() {
 
             {/* ✅ UPDATED: CV-accurate description */}
             <p className="hero-desc">
-              Full Stack Developer with 3+ years of experience building production-grade web apps
+              Full Stack Developer with 2+ years of experience building production-grade web apps
               using React, Next.js &amp; Node.js. I specialise in scalable APIs, AI-integrated tools,
               and end-to-end automation workflows delivering fast, polished products on time.
             </p>
 
             <div className="hero-stats">
               <div className="hero-stat">
-                <span className="hero-stat-num">3<span>+</span></span>
+                <span className="hero-stat-num">2<span>+</span></span>
                 <span className="hero-stat-label">Years Experience</span>
               </div>
               <div className="hero-sdivider" />
@@ -462,7 +462,7 @@ export default function Hero() {
             <div className="hero-img-frame">
               <div className="hero-img-wrap">
                 <Image
-                  src="/images/hero.png"
+                  src="/images/tanmay.webp"
                   alt="Tanmay Sharma — Full Stack Developer"
                   width={340}
                   height={453}

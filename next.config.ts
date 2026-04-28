@@ -44,6 +44,12 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+          // ✅ CSP for Tawk.to and other assets
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline' https://embed.tawk.to https://cdn.tawk.to; frame-src https://embed.tawk.to https://cdn.tawk.to; connect-src 'self' https://embed.tawk.to https://cdn.tawk.to wss://stream.tawk.to; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tawk.to; font-src 'self' https://fonts.gstatic.com;",
+          },
         ],
       },
     ];

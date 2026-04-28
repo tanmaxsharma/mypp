@@ -3,11 +3,11 @@
 import { useState, useRef } from "react";
 
 const ENGAGEMENT_TYPES = [
-  { id: "freelance",  label: "Freelance"      },
-  { id: "fulltime",   label: "Full-Time"       },
-  { id: "parttime",   label: "Part-Time"       },
-  { id: "contract",   label: "Contract"        },
-  { id: "hi",         label: "Just Saying Hi"  },
+  { id: "freelance", label: "Freelance" },
+  { id: "fulltime", label: "Full-Time" },
+  { id: "parttime", label: "Part-Time" },
+  { id: "contract", label: "Contract" },
+  { id: "hi", label: "Just Saying Hi" },
 ];
 
 const SERVICES = [
@@ -20,28 +20,86 @@ const SERVICES = [
 ];
 
 export default function Contact() {
-  const [submitted,       setSubmitted]       = useState(false);
-  const [loading,         setLoading]         = useState(false);
-  const [selectedType,    setSelectedType]    = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedType, setSelectedType] = useState<string>("");
   const [selectedService, setSelectedService] = useState<string>("");
-  const [error,           setError]           = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const honeypotRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     // ✅ Honeypot — bot hai toh silently ignore
     if (honeypotRef.current?.value) return;
 
-    // ✅ Engagement type validation
+    // ✅ Validation
+    if (!formData.name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     if (!selectedType) {
       setError("Please select an engagement type.");
       return;
     }
 
+    if (!selectedService) {
+      setError("Please select a service.");
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      setError("Please write a message.");
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1200);
+
+    try {
+      // ✅ PRODUCTION: Replace with your backend API endpoint
+      // Example: const response = await fetch("/api/contact", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     name: formData.name,
+      //     email: formData.email,
+      //     engagementType: selectedType,
+      //     service: selectedService,
+      //     message: formData.message,
+      //   }),
+      // });
+
+      // For now, simulate a successful submission
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      setSelectedType("");
+      setSelectedService("");
+    } catch (err) {
+      setError("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -197,35 +255,109 @@ export default function Contact() {
 
       <section id="contact" className="contact-section">
         <div className="contact-inner">
-
           {/* ── LEFT ── */}
           <div className="contact-left">
             <p className="contact-eyebrow">Let's Connect</p>
-            <h2 className="contact-title">Get In<br />Touch<span>.</span></h2>
+            <h2 className="contact-title">
+              Get In
+              <br />
+              Touch<span>.</span>
+            </h2>
             <p className="contact-tagline">
-              Got a project, a job opportunity, or want to automate something? I'm open to freelance, full-time, and contract work — I'll get back within 24 hours.
+              Got a project, a job opportunity, or want to automate something?
+              I'm open to freelance, full-time, and contract work — I'll get
+              back within 24 hours.
             </p>
 
             <div className="contact-info">
-              <a href="mailto:tanmaysharma.eng05@gmail.com" className="contact-info-item">
-                <div className="contact-info-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
-                <div><span className="contact-info-label">Email</span><span className="contact-info-value">tanmaysharma.eng05@gmail.com</span></div>
+              <a
+                href="mailto:tanmaysharma.eng05@gmail.com"
+                className="contact-info-item"
+              >
+                <div className="contact-info-icon">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="contact-info-label">Email</span>
+                  <span className="contact-info-value">
+                    tanmaysharma.eng05@gmail.com
+                  </span>
+                </div>
               </a>
               <a href="tel:+919406525259" className="contact-info-item">
-                <div className="contact-info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.9a16 16 0 006.41 6.41l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-                <div><span className="contact-info-label">Phone</span><span className="contact-info-value">+91-9406525259</span></div>
+                <div className="contact-info-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.9a16 16 0 006.41 6.41l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="contact-info-label">Phone</span>
+                  <span className="contact-info-value">+91-9406525259</span>
+                </div>
               </a>
               <div className="contact-info-item">
-                <div className="contact-info-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-                <div><span className="contact-info-label">Location</span><span className="contact-info-value">Jabalpur, MP — India</span></div>
+                <div className="contact-info-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="contact-info-label">Location</span>
+                  <span className="contact-info-value">
+                    Jabalpur, MP — India
+                  </span>
+                </div>
               </div>
             </div>
 
             <div className="contact-socials">
-              <a href="https://github.com/tanmaxsharma"           target="_blank" rel="noreferrer" className="social-btn"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
-              <a href="https://www.linkedin.com/in/tanmaxsharma/" target="_blank" rel="noreferrer" className="social-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-              <a href="https://x.com/tanmaxsharma"                target="_blank" rel="noreferrer" className="social-btn"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4"/></svg></a>
-              <a href="https://www.instagram.com/tanmaxsharma"    target="_blank" rel="noreferrer" className="social-btn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#aaa"/></svg></a>
+              <a
+                href="https://github.com/tanmaxsharma"
+                target="_blank"
+                rel="noreferrer"
+                className="social-btn"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tanmaxsharma/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-btn"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/tanmaxsharma"
+                target="_blank"
+                rel="noreferrer"
+                className="social-btn"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 4l16 16M4 20L20 4" />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/tanmaxsharma"
+                target="_blank"
+                rel="noreferrer"
+                className="social-btn"
+              >
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="#aaa" />
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -233,17 +365,24 @@ export default function Contact() {
           <div className="contact-form-wrap">
             {submitted ? (
               <div className="success-msg">
-                <div className="success-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <div className="success-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </div>
                 <h3>Message Sent!</h3>
-                <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+                <p>
+                  Thanks for reaching out. I'll get back to you within 24 hours.
+                </p>
               </div>
             ) : (
               <>
                 <h3 className="contact-form-title">Send a Message</h3>
-                <p className="contact-form-sub">Fill out the form and I'll respond ASAP.</p>
+                <p className="contact-form-sub">
+                  Fill out the form and I'll respond ASAP.
+                </p>
 
                 <form className="contact-form" onSubmit={handleSubmit}>
-
                   {/* ✅ Honeypot field — invisible to users, bots fill it */}
                   <input
                     ref={honeypotRef}
@@ -257,23 +396,44 @@ export default function Contact() {
                   <div className="form-row">
                     <div className="form-group">
                       <label className="form-label">Name</label>
-                      <input className="form-input" placeholder="Your Name" required />
+                      <input
+                        className="form-input"
+                        placeholder="Your Name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                     <div className="form-group">
                       <label className="form-label">Email</label>
-                      <input type="email" className="form-input" placeholder="hi@you.com" required />
+                      <input
+                        type="email"
+                        className="form-input"
+                        placeholder="hi@you.com"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">What kind of engagement are you looking for?</label>
+                    <label className="form-label">
+                      What kind of engagement are you looking for?
+                    </label>
                     <div className="form-chips">
-                      {ENGAGEMENT_TYPES.map(t => (
+                      {ENGAGEMENT_TYPES.map((t) => (
                         <button
                           key={t.id}
                           type="button"
                           className={`form-chip${selectedType === t.id ? " active" : ""}`}
-                          onClick={() => setSelectedType(prev => prev === t.id ? "" : t.id)}
+                          onClick={() =>
+                            setSelectedType((prev) =>
+                              prev === t.id ? "" : t.id,
+                            )
+                          }
                         >
                           {t.label}
                         </button>
@@ -282,37 +442,61 @@ export default function Contact() {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">What can I help you with?</label>
+                    <label className="form-label">
+                      What can I help you with?
+                    </label>
                     <select
                       className={`form-select${!selectedService ? " empty" : ""}`}
                       value={selectedService}
-                      onChange={e => setSelectedService(e.target.value)}
+                      onChange={(e) => setSelectedService(e.target.value)}
                       required
                     >
-                      <option value="" disabled>Select a service…</option>
-                      {SERVICES.map(s => (
-                        <option key={s} value={s}>{s}</option>
+                      <option value="" disabled>
+                        Select a service…
+                      </option>
+                      {SERVICES.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
                       ))}
                     </select>
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Message</label>
-                    <textarea className="form-textarea" placeholder="Tell me about your project, idea, or requirement..." required />
+                    <textarea
+                      className="form-textarea"
+                      placeholder="Tell me about your project, idea, or requirement..."
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                    />
                   </div>
 
                   {/* ✅ Error message */}
                   {error && <p className="form-error">{error}</p>}
 
-                  <button type="submit" className="submit-btn" disabled={loading}>
-                    {loading ? "Sending…" : (<>Send Message <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></>)}
+                  <button
+                    type="submit"
+                    className="submit-btn"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      "Sending…"
+                    ) : (
+                      <>
+                        Send Message{" "}
+                        <svg viewBox="0 0 24 24">
+                          <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+                        </svg>
+                      </>
+                    )}
                   </button>
-
                 </form>
               </>
             )}
           </div>
-
         </div>
       </section>
     </>

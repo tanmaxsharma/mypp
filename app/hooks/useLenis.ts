@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-export default function useLenis() {
+export default function useLenis(): void {
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.1, // controls smoothness
